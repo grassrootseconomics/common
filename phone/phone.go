@@ -1,7 +1,9 @@
 package phone
 
 import (
+	"errors"
 	"regexp"
+	"strings"
 )
 
 // Define the regex patterns as constants
@@ -13,4 +15,26 @@ const (
 func IsValidPhoneNumber(phonenumber string) bool {
 	match, _ := regexp.MatchString(phoneRegex, phonenumber)
 	return match
+}
+
+// FormatPhoneNumber formats a Kenyan phone number to "+254xxxxxxxx".
+func FormatPhoneNumber(phone string) (string, error) {
+	if !IsValidPhoneNumber(phone) {
+	      return "", errors.New("invalid phone number")
+	}
+
+	// Remove any leading "+" and spaces
+	phone = strings.TrimPrefix(phone, "+")
+	phone = strings.ReplaceAll(phone, " ", "")
+
+	// Replace leading "0" with "254" if present
+	if strings.HasPrefix(phone, "0") {
+	      phone = "254" + phone[1:]
+	}
+	// Add "+" if not already present
+	if !strings.HasPrefix(phone, "254") {
+	      return "", errors.New("unexpected format")
+	}
+
+	return "+" + phone, nil
 }
