@@ -1,4 +1,4 @@
-package utils
+package lang
 
 var isoCodes = map[string]bool{
 	"eng":     true, // English
