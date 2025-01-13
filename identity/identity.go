@@ -6,6 +6,14 @@ import (
 	"git.grassecon.net/grassrootseconomics/common/phone"
 )
 
+// Identity contains all flavors of identifiers used across stream, api and
+// client for a single agent.
+type Identity struct {
+	NormalAddress string
+	ChecksumAddress string
+	SessionId string
+}
+
 // CheckRecipient validates the recipient format based on the criteria
 func CheckRecipient(recipient string) (string, error) {
 	if phone.IsValidPhoneNumber(recipient) {
