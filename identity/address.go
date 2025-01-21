@@ -3,6 +3,7 @@ package identity
 import (
 	"regexp"
 )
+
 // Define the regex patterns as constants
 const (
 	addressRegex = `^0x[a-fA-F0-9]{40}$`

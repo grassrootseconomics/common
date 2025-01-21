@@ -12,7 +12,6 @@ const (
 
 	//Allowed incorrect  PIN attempts
 	AllowedPINAttempts = uint8(3)
-	
 )
 
 // checks whether the given input is a 4 digit number

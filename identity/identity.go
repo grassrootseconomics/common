@@ -9,9 +9,9 @@ import (
 // Identity contains all flavors of identifiers used across stream, api and
 // client for a single agent.
 type Identity struct {
-	NormalAddress string
+	NormalAddress   string
 	ChecksumAddress string
-	SessionId string
+	SessionId       string
 }
 
 // CheckRecipient validates the recipient format based on the criteria

@@ -39,8 +39,7 @@ func CalculateAgeWithYOB(yob int) int {
 	return currentYear - yob
 }
 
-
-//IsValidYob checks if the provided yob can be considered valid 
+// IsValidYob checks if the provided yob can be considered valid
 func IsValidYOb(yob string) bool {
 	currentYear := time.Now().Year()
 	yearOfBirth, err := strconv.ParseInt(yob, 10, 64)
