@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	aliasRegex   = `^[a-zA-Z0-9]+$`
+	aliasRegex = `^[a-zA-Z0-9]+(\.[a-zA-Z0.9]+)*$`
 )
 
 // IsValidAlias checks if the alias is a valid alias format
