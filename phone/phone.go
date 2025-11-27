@@ -41,3 +41,34 @@ func FormatPhoneNumber(phone string) (string, error) {
 
 	return "+" + phone, nil
 }
+
+// FormatToLocalPhoneNumber converts a phone number like "+2547XXXXXXXX"
+// or "2547XXXXXXXX" into the local format "07XXXXXXXX" / "01XXXXXXXX".
+func FormatToLocalPhoneNumber(phone string) (string, error) {
+	// Remove leading "+" and spaces
+	phone = strings.TrimPrefix(phone, "+")
+	phone = strings.ReplaceAll(phone, " ", "")
+
+	// Must start with 254
+	if !strings.HasPrefix(phone, "254") {
+		return "", errors.New("invalid international phone format")
+	}
+
+	// Remove "254" prefix → get 7XXXXXXXX or 1XXXXXXXX
+	rest := phone[3:]
+
+	// Validate: must be 9 digits
+	if len(rest) != 9 {
+		return "", errors.New("invalid phone number length")
+	}
+
+	// Kenyan mobile numbers start with 7 or 1 (Safaricom/Airtel/Telkom prefixes)
+	if !(strings.HasPrefix(rest, "7") || strings.HasPrefix(rest, "1")) {
+		return "", errors.New("invalid Kenyan mobile prefix")
+	}
+
+	// Convert to local: prepend "0"
+	local := "0" + rest
+
+	return local, nil
+}
