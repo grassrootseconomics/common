@@ -11,7 +11,8 @@ const (
 	// TODO: This should rather use a phone package to determine whether valid phone number for any region.
 	// Kenyan phone numbers: must be exactly 10 digits (07XXXXXXXX or 01XXXXXXXX) when starting with 0
 	// Or start with 254 / +254 and still follow the same pattern
-	phoneRegex = `^(?:\+254|254|0)(7\d{8}|1[01]\d{7})$`
+	// Supports any 01 prefix (010, 011, 014, 015, etc.) for future adaptability
+	phoneRegex = `^(?:\+254|254|0)(7\d{8}|1\d{8})$`
 )
 
 // IsValidPhoneNumber checks if the given number is a valid phone number
